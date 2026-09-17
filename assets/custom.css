@@ -2422,3 +2422,8 @@ product-form.product-form form {
     min-height: 54px;
   }
 }
+
+/* Git tracking test */
+body {
+  outline: 2px solid transparent;
+}
