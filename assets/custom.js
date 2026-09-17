@@ -1,4 +1,61 @@
 (function () {
+  const WISHLIST_STORAGE_KEY = "shopify-theme-wishlist";
+
+  function getWishlist() {
+    try {
+      const storedWishlist = JSON.parse(
+        window.localStorage.getItem(WISHLIST_STORAGE_KEY) || "[]"
+      );
+
+      return Array.isArray(storedWishlist)
+        ? storedWishlist.map(String)
+        : [];
+    } catch (error) {
+      console.warn("Unable to read wishlist:", error);
+      return [];
+    }
+  }
+
+  function saveWishlist(wishlist) {
+    try {
+      window.localStorage.setItem(
+        WISHLIST_STORAGE_KEY,
+        JSON.stringify(wishlist)
+      );
+    } catch (error) {
+      console.warn("Unable to save wishlist:", error);
+    }
+  }
+
+  function updateWishlistButton(button, isWishlisted) {
+    const productTitle = button.dataset.productTitle || "product";
+    const heart = button.querySelector(".custom-product-card__heart");
+
+    button.classList.toggle("is-wishlisted", isWishlisted);
+    button.setAttribute("aria-pressed", String(isWishlisted));
+    button.setAttribute(
+      "aria-label",
+      `${isWishlisted ? "Remove" : "Add"} ${productTitle} ${
+        isWishlisted ? "from" : "to"
+      } wishlist`
+    );
+
+    if (heart) {
+      heart.textContent = isWishlisted ? "♥" : "♡";
+    }
+  }
+
+  function initializeWishlist() {
+    const wishlist = getWishlist();
+
+    document.querySelectorAll("[data-wishlist]").forEach(function (button) {
+      updateWishlistButton(
+        button,
+        wishlist.includes(String(button.dataset.productId))
+      );
+    });
+  }
+
   function updateVariant(card, button) {
     const variantButtons = card.querySelectorAll("[data-variant-id]");
     const quickAddButton = card.querySelector("[data-quick-add]");
@@ -9,7 +66,7 @@
 
     const variantId = button.dataset.variantId;
     const variantTitle = button.dataset.variantTitle;
-    const variantPrice = button.dataset.variantPrice;
+    const formattedVariantPrice = button.dataset.variantPrice;
 
     variantButtons.forEach(function (item) {
       item.classList.remove("is-selected");
@@ -28,19 +85,17 @@
       selectedVariantTitle.textContent = variantTitle;
     }
 
-    if (priceElement && variantPrice) {
-      const priceInCents = Number(variantPrice);
-
-      priceElement.textContent = new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "USD"
-      }).format(priceInCents / 100);
+    if (priceElement && formattedVariantPrice) {
+      priceElement.textContent = formattedVariantPrice;
     }
   }
 
 
   async function quickAdd(card, button) {
     const variantId = button.dataset.variantId;
+    const cartUi =
+      document.querySelector("cart-notification") ||
+      document.querySelector("cart-drawer");
 
     if (!variantId) {
       console.error("No variant selected.");
@@ -53,6 +108,20 @@
     button.innerHTML = "<span>Adding...</span>";
 
     try {
+      const requestBody = {
+        id: Number(variantId),
+        quantity: 1
+      };
+
+      if (cartUi && typeof cartUi.getSectionsToRender === "function") {
+        requestBody.sections = cartUi
+          .getSectionsToRender()
+          .map(function (section) {
+            return section.id;
+          });
+        requestBody.sections_url = window.location.pathname;
+      }
+
       const response = await fetch(
         window.Shopify.routes.root + "cart/add.js",
         {
@@ -61,14 +130,7 @@
             "Content-Type": "application/json",
             Accept: "application/json"
           },
-          body: JSON.stringify({
-            items: [
-              {
-                id: Number(variantId),
-                quantity: 1
-              }
-            ]
-          })
+          body: JSON.stringify(requestBody)
         }
       );
 
@@ -84,7 +146,12 @@
 
       const data = await response.json();
 
-      console.log("Product added:", data);
+      if (cartUi && typeof cartUi.renderContents === "function") {
+        if (typeof cartUi.setActiveElement === "function") {
+          cartUi.setActiveElement(button);
+        }
+        cartUi.renderContents(data);
+      }
 
       button.innerHTML = "<span>✓ Added</span>";
 
@@ -107,15 +174,24 @@
 
 
   function toggleWishlist(button) {
-    button.classList.toggle("is-wishlisted");
+    const productId = String(button.dataset.productId || "");
 
-    const isWishlisted =
-      button.classList.contains("is-wishlisted");
+    if (!productId) {
+      return;
+    }
 
-    button.setAttribute(
-      "aria-pressed",
-      isWishlisted ? "true" : "false"
-    );
+    const wishlist = getWishlist();
+    const itemIndex = wishlist.indexOf(productId);
+    const isWishlisted = itemIndex === -1;
+
+    if (isWishlisted) {
+      wishlist.push(productId);
+    } else {
+      wishlist.splice(itemIndex, 1);
+    }
+
+    saveWishlist(wishlist);
+    updateWishlistButton(button, isWishlisted);
   }
 
 
@@ -168,5 +244,7 @@
     }
 
   });
+
+  initializeWishlist();
 
 })();

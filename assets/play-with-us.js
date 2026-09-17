@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         label: "FREE SHIPPING",
-        code: null
+        code: "SPINSHIP"
       },
       {
         label: "20% OFF",
@@ -186,9 +186,15 @@ document.addEventListener("DOMContentLoaded", () => {
       /*
        * Keep the wheel moving forward.
        */
+      const normalizedRotation =
+        ((currentRotation % 360) + 360) % 360;
+
+      const rotationToTarget =
+        (targetRotation - normalizedRotation + 360) % 360;
+
       currentRotation +=
         fullSpins +
-        targetRotation;
+        rotationToTarget;
 
 
       wheel.style.transform =
