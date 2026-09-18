@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "bis-track-order",
+      "blocks": {
+        "step_account": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "heading": "Open your account",
+            "text": "<p>Use the same sign-in method you used when placing your order.</p>"
+          }
+        },
+        "step_order": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "heading": "Choose the order",
+            "text": "<p>Open the purchase you want to review for its latest available details.</p>"
+          }
+        },
+        "step_update": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "heading": "Follow the update",
+            "text": "<p>If tracking is available, use the carrier link shown with the order for delivery progress.</p>"
+          }
+        },
+        "notice_scan": {
+          "type": "notice",
+          "settings": {
+            "heading": "Tracking taking a pause?",
+            "text": "<p>Carrier scans can take time to appear after dispatch. Check again later or contact support if the expected delivery window has passed.</p>"
+          }
+        },
+        "notice_guest": {
+          "type": "notice",
+          "settings": {
+            "heading": "Checked out another way?",
+            "text": "<p>Review the order confirmation sent after checkout. If you still cannot locate the order, our support team can help.</p>"
+          }
+        }
+      },
+      "block_order": ["step_account", "step_order", "step_update", "notice_scan", "notice_guest"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

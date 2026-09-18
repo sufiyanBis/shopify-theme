@@ -38,6 +38,11 @@
         <div
           class="play-with-us__wheel"
           data-wheel
+          role="button"
+          tabindex="0"
+          aria-label="{{ section.settings.spin_button_label | escape }}"
+          aria-controls="PlayWithUsResult-{{ section.id }}"
+          aria-disabled="false"
         >
           <div class="play-with-us__segment segment-1">
             5% OFF
@@ -93,6 +98,7 @@
     </details>
 
     <div
+      id="PlayWithUsResult-{{ section.id }}"
       class="play-with-us__result"
       data-result
       aria-live="polite"

@@ -1,0 +1,207 @@
+{{ 'bis-service-pages.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .bis-service-page {
+    --bis-service-ink: {{ section.settings.color_ink }};
+    --bis-service-porcelain: {{ section.settings.color_background }};
+    --bis-service-pink: {{ section.settings.color_pink }};
+    --bis-service-mint: {{ section.settings.color_mint }};
+    --bis-service-acid: {{ section.settings.color_acid }};
+    --bis-service-green: {{ section.settings.color_green }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .bis-service-page {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  if customer
+    assign account_url = routes.account_url
+    assign account_label = section.settings.account_label
+  else
+    assign account_url = routes.account_login_url
+    assign account_label = section.settings.login_label
+  endif
+
+  assign support_url = section.settings.support_link
+  if support_url == blank and pages.contact != blank
+    assign support_url = pages.contact.url
+  endif
+  if support_url == blank
+    assign support_url = routes.root_url
+  endif
+-%}
+
+<section class="bis-service-page bis-track-order" aria-labelledby="TrackOrderTitle-{{ section.id }}">
+  <div class="bis-service-page__shell">
+    <header class="bis-service-page__hero">
+      <div class="bis-service-page__hero-copy">
+        {%- if section.settings.kicker != blank -%}
+          <p class="bis-service-page__kicker">{{ section.settings.kicker | escape }}</p>
+        {%- endif -%}
+        <h1 class="bis-service-page__title" id="TrackOrderTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+        {%- if section.settings.intro != blank -%}
+          <div class="bis-service-page__intro rte">{{ section.settings.intro }}</div>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.hero_note_heading != blank or section.settings.hero_note != blank -%}
+        <aside class="bis-service-page__hero-aside" aria-label="{{ section.settings.hero_note_heading | default: section.settings.kicker | escape }}">
+          {%- if section.settings.hero_note_heading != blank -%}<strong>{{ section.settings.hero_note_heading | escape }}</strong>{%- endif -%}
+          {%- if section.settings.hero_note != blank -%}<p>{{ section.settings.hero_note | escape }}</p>{%- endif -%}
+        </aside>
+      {%- endif -%}
+    </header>
+
+    <div class="bis-service-page__section">
+      <div class="bis-service-page__account-panel">
+        <div>
+          <p class="bis-service-page__eyebrow">{{ section.settings.account_kicker | escape }}</p>
+          <h2>{{ section.settings.account_heading | escape }}</h2>
+          <div class="rte">
+            {%- if customer -%}
+              {{ section.settings.account_text }}
+            {%- else -%}
+              {{ section.settings.login_text }}
+            {%- endif -%}
+          </div>
+        </div>
+        <a class="bis-service-page__button" href="{{ account_url }}">{{ account_label | escape }}</a>
+      </div>
+    </div>
+
+    {%- assign step_blocks = section.blocks | where: 'type', 'step' -%}
+    {%- if step_blocks.size > 0 -%}
+      <div class="bis-service-page__section">
+        <div class="bis-service-page__section-head">
+          <h2 class="bis-service-page__section-title">{{ section.settings.steps_heading | escape }}</h2>
+          {%- if section.settings.steps_text != blank -%}<div class="bis-service-page__section-copy rte">{{ section.settings.steps_text }}</div>{%- endif -%}
+        </div>
+        <ol class="bis-service-page__timeline">
+          {%- for block in step_blocks -%}
+            <li class="bis-service-page__step" {{ block.shopify_attributes }}>
+              <span class="bis-service-page__step-number" aria-hidden="true">{{ block.settings.number | escape }}</span>
+              <h3>{{ block.settings.heading | escape }}</h3>
+              <div class="rte">{{ block.settings.text }}</div>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endif -%}
+
+    {%- assign notice_blocks = section.blocks | where: 'type', 'notice' -%}
+    {%- if notice_blocks.size > 0 -%}
+      <div class="bis-service-page__section">
+        <div class="bis-service-page__notice-grid">
+          {%- for block in notice_blocks -%}
+            <article class="bis-service-page__notice" {{ block.shopify_attributes }}>
+              <h3>{{ block.settings.heading | escape }}</h3>
+              <div class="rte">{{ block.settings.text }}</div>
+            </article>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- assign app_blocks = section.blocks | where: 'type', '@app' -%}
+    {%- if app_blocks.size > 0 -%}
+      <div class="bis-service-page__section">
+        <div class="bis-service-page__app-panel">
+          {%- if section.settings.app_heading != blank -%}<h2>{{ section.settings.app_heading | escape }}</h2>{%- endif -%}
+          {%- if section.settings.app_text != blank -%}<div class="rte">{{ section.settings.app_text }}</div>{%- endif -%}
+          {%- for block in app_blocks -%}
+            <div class="bis-service-page__app-block" {{ block.shopify_attributes }}>{% render block %}</div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="bis-service-page__section">
+      <div class="bis-service-page__contact-panel">
+        <div>
+          <h2>{{ section.settings.support_heading | escape }}</h2>
+          <div class="rte">{{ section.settings.support_text }}</div>
+        </div>
+        <a class="bis-service-page__button bis-service-page__button--light" href="{{ support_url }}">{{ section.settings.support_label | escape }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BIS — Track order",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Order desk" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Track your order" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>See the latest status and details for your purchases through your secure customer account.</p>" },
+    { "type": "text", "id": "hero_note_heading", "label": "Hero note heading", "default": "Keep it secure" },
+    { "type": "textarea", "id": "hero_note", "label": "Hero note", "default": "We never ask for an order number and email address together on this page." },
+    { "type": "header", "content": "Customer account" },
+    { "type": "text", "id": "account_kicker", "label": "Kicker", "default": "Your purchases" },
+    { "type": "text", "id": "account_heading", "label": "Heading", "default": "Order history, all in one place" },
+    { "type": "richtext", "id": "account_text", "label": "Signed-in text", "default": "<p>Open your account to review your order history and the latest information available for each purchase.</p>" },
+    { "type": "richtext", "id": "login_text", "label": "Signed-out text", "default": "<p>Sign in securely to see your order history and open the order you want to check.</p>" },
+    { "type": "text", "id": "account_label", "label": "Signed-in button label", "default": "View my orders" },
+    { "type": "text", "id": "login_label", "label": "Signed-out button label", "default": "Sign in to track" },
+    { "type": "header", "content": "Guidance" },
+    { "type": "text", "id": "steps_heading", "label": "Steps heading", "default": "From checkout to doorstep" },
+    { "type": "richtext", "id": "steps_text", "label": "Steps introduction", "default": "<p>Updates vary by carrier and destination. These checkpoints explain what commonly happens next.</p>" },
+    { "type": "text", "id": "app_heading", "label": "Tracking app heading", "default": "Live tracking" },
+    { "type": "richtext", "id": "app_text", "label": "Tracking app introduction", "default": "<p>Add your preferred tracking app block here in the Theme Editor.</p>" },
+    { "type": "header", "content": "Support" },
+    { "type": "text", "id": "support_heading", "label": "Heading", "default": "Still need a hand?" },
+    { "type": "richtext", "id": "support_text", "label": "Text", "default": "<p>Our support team can help with delivery questions. Keep your order number nearby when you contact us.</p>" },
+    { "type": "text", "id": "support_label", "label": "Button label", "default": "Contact support" },
+    { "type": "url", "id": "support_link", "label": "Button link" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_ink", "label": "Ink", "default": "#15171C" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#F4F1EB" },
+    { "type": "color", "id": "color_pink", "label": "Hot pink", "default": "#EF2F76" },
+    { "type": "color", "id": "color_mint", "label": "Mint", "default": "#45C0B6" },
+    { "type": "color", "id": "color_acid", "label": "Acid", "default": "#E9F957" },
+    { "type": "color", "id": "color_green", "label": "Deep green", "default": "#123F32" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Tracking step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Open your account" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Use the same sign-in method you used when placing your order.</p>" }
+      ]
+    },
+    {
+      "type": "notice",
+      "name": "Guidance card",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Tracking taking a pause?" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Carrier scans can take time to appear after dispatch. Check again later or contact support if the expected window has passed.</p>" }
+      ]
+    },
+    { "type": "@app" }
+  ],
+  "presets": [
+    {
+      "name": "BIS — Track order",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "notice" }
+      ]
+    }
+  ]
+}
+{% endschema %}

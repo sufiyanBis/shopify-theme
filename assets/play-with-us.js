@@ -66,6 +66,12 @@
     let disposed = false;
     let controller;
 
+    function setSpinAvailability(disabled) {
+      spinButton.disabled = disabled;
+      wheel.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+      wheel.classList.toggle('is-disabled', disabled);
+    }
+
     function updatePersistenceMessage() {
       eligibilityNote.hidden = false;
       eligibilityNote.textContent = browserStorage
@@ -178,7 +184,7 @@
       countdown.hidden = true;
       countdown.textContent = '';
       result.textContent = section.dataset.initialMessage || 'Spin the wheel to reveal your prize!';
-      spinButton.disabled = eligiblePrizes.length === 0;
+      setSpinAvailability(eligiblePrizes.length === 0);
       spinButton.textContent = section.dataset.spinLabel || 'Spin the Wheel';
       wheel.classList.add('is-restoring');
       wheel.style.transform = 'rotate(0deg)';
@@ -282,7 +288,7 @@
       clearTimers();
       sessionRecord = record;
       isSpinning = false;
-      spinButton.disabled = true;
+      setSpinAvailability(true);
       spinButton.textContent = section.dataset.spinLabel || 'Spin the Wheel';
       positionWheel(record.prizeId, !restoreWheel);
       showResult(record);
@@ -300,7 +306,7 @@
       }
 
       isSpinning = true;
-      spinButton.disabled = true;
+      setSpinAvailability(true);
       result.setAttribute('aria-busy', 'true');
       result.textContent = 'Spinning…';
       countdown.hidden = true;
@@ -342,6 +348,14 @@
       }
     }
 
+    function onSpinActivation(event) {
+      if (event.type === 'keydown') {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+      }
+      spinWheel();
+    }
+
     function onStorage(event) {
       if (event.key !== STORAGE_KEY) return;
       if (event.newValue === null) {
@@ -362,12 +376,17 @@
       }
     };
     controllers.add(controller);
-    spinButton.addEventListener('click', spinWheel);
+    spinButton.addEventListener('click', onSpinActivation);
+    wheel.addEventListener('click', onSpinActivation);
+    wheel.addEventListener('keydown', onSpinActivation);
     window.addEventListener('storage', onStorage);
     section._playWithUsCleanup = function () {
       disposed = true;
       clearTimers();
       controllers.delete(controller);
+      spinButton.removeEventListener('click', onSpinActivation);
+      wheel.removeEventListener('click', onSpinActivation);
+      wheel.removeEventListener('keydown', onSpinActivation);
       window.removeEventListener('storage', onStorage);
     };
     updateOddsDisclosure();

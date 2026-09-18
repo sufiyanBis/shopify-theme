@@ -141,7 +141,16 @@
     transform 5s cubic-bezier(0.16, 1, 0.3, 1);
 
   box-sizing: border-box;
+  cursor: pointer;
 }
+
+.play-with-us__wheel:focus-visible {
+  outline: 4px solid #123F32;
+  outline-offset: 5px;
+  box-shadow: 0 0 0 8px #45C0B6, 0 20px 45px rgba(23, 32, 42, 0.16);
+}
+
+.play-with-us__wheel[aria-disabled='true'] { cursor: not-allowed; }
 
 
 /* =========================================================
@@ -498,6 +507,93 @@
 .play-with-us__apply:focus-visible {
   outline: 3px solid #45C0B6;
   outline-offset: 4px;
+}
+
+/* The alternate iframe view fits the complete game into the modal's existing stage. */
+.wheel-embed .play-with-us {
+  display: grid;
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  padding: clamp(0.6rem, 1.5dvh, 1.4rem) clamp(0.8rem, 2vw, 1.6rem);
+  overflow: hidden;
+  background-color: #FFF9F0;
+  background-image:
+    linear-gradient(rgba(23, 32, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 32, 42, 0.03) 1px, transparent 1px);
+  background-size: 3.2rem 3.2rem;
+}
+
+.wheel-embed .play-with-us__container {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto auto auto;
+  width: min(100%, 72rem);
+  height: 100%;
+  min-height: 0;
+  align-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.wheel-embed .play-with-us__header { margin: 0 0 0.4rem; }
+.wheel-embed .play-with-us__header h1 { margin-bottom: 0.2rem; font-size: clamp(2.3rem, 4.5dvh, 3.4rem); line-height: 1; }
+.wheel-embed .play-with-us__header p { max-width: 58rem; font-size: clamp(1.1rem, 1.9dvh, 1.4rem); line-height: 1.25; }
+
+.wheel-embed .play-with-us__wheel-area {
+  min-height: 0;
+  padding: clamp(1.4rem, 2.5dvh, 2.2rem) 0 0.3rem;
+}
+
+.wheel-embed .play-with-us__wheel-wrapper {
+  container-type: inline-size;
+  width: min(32dvh, 30rem, calc(100vw - 3rem));
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  aspect-ratio: 1;
+}
+
+.wheel-embed .play-with-us__wheel { border-width: clamp(0.4rem, 1dvh, 0.7rem); }
+.wheel-embed .play-with-us__pointer { top: 0; font-size: clamp(2rem, 3.8dvh, 2.8rem); }
+.wheel-embed .play-with-us__segment { font-size: clamp(0.8rem, 1.7dvh, 1.1rem); }
+.wheel-embed .segment-1 { transform: rotate(36deg) translateY(-34cqi) rotate(-36deg); }
+.wheel-embed .segment-2 { transform: rotate(108deg) translateY(-34cqi) rotate(-108deg); }
+.wheel-embed .segment-3 { transform: rotate(180deg) translateY(-34cqi) rotate(-180deg); }
+.wheel-embed .segment-4 { transform: rotate(252deg) translateY(-34cqi) rotate(-252deg); }
+.wheel-embed .segment-5 { transform: rotate(324deg) translateY(-34cqi) rotate(-324deg); }
+
+.wheel-embed .play-with-us__wheel-center {
+  width: clamp(4.8rem, 9dvh, 6.8rem);
+  height: clamp(4.8rem, 9dvh, 6.8rem);
+  font-size: clamp(1.1rem, 2dvh, 1.5rem);
+}
+
+.wheel-embed .play-with-us__controls { margin-top: 0.4rem; }
+.wheel-embed .play-with-us__spin-button { min-width: min(22rem, 100%); min-height: clamp(3.8rem, 6dvh, 4.6rem); padding: 0 2rem; border-radius: 0.6rem; font-size: 1.4rem; }
+.wheel-embed .play-with-us__odds { width: min(100%, 44rem); margin-top: 0.5rem; }
+.wheel-embed .play-with-us__odds summary { padding: 0.55rem 0.4rem; font-size: 1.05rem; }
+.wheel-embed .play-with-us__odds ul { padding-bottom: 0.4rem; }
+.wheel-embed .play-with-us__odds li { padding: 0.2rem 0; font-size: 1.05rem; line-height: 1.2; }
+.wheel-embed .play-with-us__odds p { padding: 0.2rem 0.8rem 0.6rem; font-size: 1rem; line-height: 1.2; }
+
+.wheel-embed .play-with-us__result {
+  width: min(100%, 60rem);
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  font-size: clamp(1.15rem, 1.8dvh, 1.4rem);
+  line-height: 1.25;
+}
+
+.wheel-embed .play-with-us__apply { min-height: 3.6rem; margin-top: 0.5rem; padding: 0 1.6rem; border-radius: 0.5rem; font-size: 1.2rem; }
+.wheel-embed :is(.play-with-us__countdown, .play-with-us__eligibility-note) { margin-top: 0.3rem; font-size: 1rem; line-height: 1.2; }
+
+@media screen and (max-height: 560px) {
+  .wheel-embed .play-with-us { padding-top: 0.4rem; padding-bottom: 0.4rem; }
+  .wheel-embed .play-with-us__header p { font-size: 1rem; }
+  .wheel-embed .play-with-us__wheel-wrapper { width: min(25dvh, 20rem, calc(100vw - 3rem)); }
+  .wheel-embed .play-with-us__wheel-area { padding-top: 1rem; }
+  .wheel-embed .play-with-us__result { padding-top: 0.45rem; padding-bottom: 0.45rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

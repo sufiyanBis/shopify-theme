@@ -1,0 +1,173 @@
+{{ 'bis-service-pages.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .bis-service-page {
+    --bis-service-ink: {{ section.settings.color_ink }};
+    --bis-service-porcelain: {{ section.settings.color_background }};
+    --bis-service-pink: {{ section.settings.color_pink }};
+    --bis-service-mint: {{ section.settings.color_mint }};
+    --bis-service-acid: {{ section.settings.color_acid }};
+    --bis-service-green: {{ section.settings.color_green }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .bis-service-page {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign contact_url = section.settings.contact_link
+  if contact_url == blank and pages.contact != blank
+    assign contact_url = pages.contact.url
+  endif
+  if contact_url == blank
+    assign contact_url = routes.root_url
+  endif
+  assign faq_blocks = section.blocks | where: 'type', 'faq'
+-%}
+
+<section class="bis-service-page bis-faq" aria-labelledby="FaqTitle-{{ section.id }}">
+  <div class="bis-service-page__shell">
+    <header class="bis-service-page__hero">
+      <div class="bis-service-page__hero-copy">
+        {%- if section.settings.kicker != blank -%}<p class="bis-service-page__kicker">{{ section.settings.kicker | escape }}</p>{%- endif -%}
+        <h1 class="bis-service-page__title" id="FaqTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+        {%- if section.settings.intro != blank -%}<div class="bis-service-page__intro rte">{{ section.settings.intro }}</div>{%- endif -%}
+      </div>
+      {%- if section.settings.hero_note_heading != blank or section.settings.hero_note != blank -%}
+        <aside class="bis-service-page__hero-aside" aria-label="{{ section.settings.hero_note_heading | default: section.settings.kicker | escape }}">
+          {%- if section.settings.hero_note_heading != blank -%}<strong>{{ section.settings.hero_note_heading | escape }}</strong>{%- endif -%}
+          {%- if section.settings.hero_note != blank -%}<p>{{ section.settings.hero_note | escape }}</p>{%- endif -%}
+        </aside>
+      {%- endif -%}
+    </header>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="bis-service-page__section">
+        <div class="bis-service-page__section-head">
+          <h2 class="bis-service-page__section-title">{{ section.settings.list_heading | escape }}</h2>
+          {%- if section.settings.list_text != blank -%}<div class="bis-service-page__section-copy rte">{{ section.settings.list_text }}</div>{%- endif -%}
+        </div>
+        <div class="bis-service-page__details-list">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'category' -%}
+                <h2 class="bis-service-page__faq-category" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h2>
+              {%- when 'faq' -%}
+                <details class="bis-service-page__details" {{ block.shopify_attributes }}>
+                  <summary>
+                    <span>
+                      {%- if block.settings.kicker != blank -%}<span class="bis-service-page__details-kicker">{{ block.settings.kicker | escape }}</span>{%- endif -%}
+                      <span class="bis-service-page__details-question">{{ block.settings.question | escape }}</span>
+                    </span>
+                  </summary>
+                  <div class="bis-service-page__details-answer rte">{{ block.settings.answer }}</div>
+                </details>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="bis-service-page__section">
+      <div class="bis-service-page__contact-panel">
+        <div>
+          <h2>{{ section.settings.contact_heading | escape }}</h2>
+          <div class="rte">{{ section.settings.contact_text }}</div>
+        </div>
+        <a class="bis-service-page__button bis-service-page__button--light" href="{{ contact_url }}">{{ section.settings.contact_label | escape }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if faq_blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in faq_blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | strip_html | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ block.settings.answer | strip_html | strip_newlines | json }}
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BIS — FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Questions, answered" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Good to know" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Quick answers about orders, products and shopping with us. Open a question to see the details.</p>" },
+    { "type": "text", "id": "hero_note_heading", "label": "Hero note heading", "default": "Can’t find it?" },
+    { "type": "textarea", "id": "hero_note", "label": "Hero note", "default": "Send our team a message and include any details that will help us answer clearly." },
+    { "type": "header", "content": "FAQ list" },
+    { "type": "text", "id": "list_heading", "label": "Heading", "default": "Start here" },
+    { "type": "richtext", "id": "list_text", "label": "Introduction", "default": "<p>Group questions with category blocks or add a short kicker to any individual answer.</p>" },
+    { "type": "header", "content": "Contact call to action" },
+    { "type": "text", "id": "contact_heading", "label": "Heading", "default": "Need a human answer?" },
+    { "type": "richtext", "id": "contact_text", "label": "Text", "default": "<p>Our support team is ready to help with questions that need a closer look.</p>" },
+    { "type": "text", "id": "contact_label", "label": "Button label", "default": "Ask our team" },
+    { "type": "url", "id": "contact_link", "label": "Button link" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_ink", "label": "Ink", "default": "#15171C" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#F4F1EB" },
+    { "type": "color", "id": "color_pink", "label": "Hot pink", "default": "#EF2F76" },
+    { "type": "color", "id": "color_mint", "label": "Mint", "default": "#45C0B6" },
+    { "type": "color", "id": "color_acid", "label": "Acid", "default": "#E9F957" },
+    { "type": "color", "id": "color_green", "label": "Deep green", "default": "#123F32" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category heading",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Orders & delivery" }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "Orders" },
+        { "type": "text", "id": "question", "label": "Question", "default": "Where can I check my order?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Sign in to your customer account to review your order history and open the order you want to check.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BIS — FAQ",
+      "blocks": [
+        { "type": "category" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "category" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}

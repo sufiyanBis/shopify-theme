@@ -1,0 +1,406 @@
+.bis-service-page {
+  --service-ink: var(--bis-service-ink, #15171c);
+  --service-porcelain: var(--bis-service-porcelain, #f4f1eb);
+  --service-pink: var(--bis-service-pink, #ef2f76);
+  --service-mint: var(--bis-service-mint, #45c0b6);
+  --service-acid: var(--bis-service-acid, #e9f957);
+  --service-green: var(--bis-service-green, #123f32);
+  --service-paper: #fff;
+  --service-line: color-mix(in srgb, var(--service-ink) 20%, transparent);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--service-porcelain);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--service-ink) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--service-ink) 4%, transparent) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  color: var(--service-ink);
+}
+
+.bis-service-page *,
+.bis-service-page *::before,
+.bis-service-page *::after { box-sizing: border-box; }
+
+.bis-service-page__shell {
+  width: min(100% - 3.2rem, 120rem);
+  margin-inline: auto;
+}
+
+.bis-service-page__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(25rem, 0.55fr);
+  gap: clamp(2.4rem, 5vw, 7rem);
+  align-items: end;
+  padding: clamp(4.8rem, 9vw, 10rem) clamp(2.2rem, 5vw, 6rem);
+  overflow: hidden;
+  border: 2px solid var(--service-ink);
+  background: var(--service-green);
+  color: #fff;
+  box-shadow: 0.8rem 0.8rem 0 var(--service-pink);
+}
+
+.bis-service-page__hero::after {
+  position: absolute;
+  top: -5rem;
+  right: -4rem;
+  width: 17rem;
+  height: 17rem;
+  border: 2.2rem solid var(--service-acid);
+  border-radius: 50%;
+  content: '';
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.bis-service-page__hero-copy,
+.bis-service-page__hero-aside { position: relative; z-index: 1; }
+
+.bis-service-page__kicker,
+.bis-service-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.5rem;
+  color: var(--service-acid);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.bis-service-page__kicker::before {
+  width: 2.4rem;
+  height: 0.35rem;
+  background: var(--service-pink);
+  content: '';
+}
+
+.bis-service-page__title {
+  max-width: 13ch;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-heading-family);
+  font-size: clamp(4.6rem, 8vw, 10rem);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.bis-service-page__intro {
+  max-width: 60rem;
+  margin-top: 2.4rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  line-height: 1.55;
+}
+
+.bis-service-page__intro :is(p, ul, ol):first-child { margin-top: 0; }
+.bis-service-page__intro :is(p, ul, ol):last-child { margin-bottom: 0; }
+
+.bis-service-page__hero-aside {
+  padding: 2rem;
+  border: 1px solid var(--service-ink);
+  background: var(--service-acid);
+  color: var(--service-ink);
+  box-shadow: 0.55rem 0.55rem 0 var(--service-mint);
+  transform: rotate(1.5deg);
+}
+
+.bis-service-page__hero-aside strong {
+  display: block;
+  font-family: var(--font-heading-family);
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.bis-service-page__hero-aside p { margin: 0.8rem 0 0; line-height: 1.5; }
+
+.bis-service-page__section { padding-top: clamp(5rem, 8vw, 9rem); }
+.bis-service-page__section:last-child { padding-bottom: 0; }
+
+.bis-service-page__section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(28rem, 1.3fr);
+  gap: 2rem 5rem;
+  align-items: end;
+  margin-bottom: 3rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 2px solid var(--service-ink);
+}
+
+.bis-service-page__section-title {
+  margin: 0;
+  color: var(--service-ink);
+  font-family: var(--font-heading-family);
+  font-size: clamp(3rem, 5vw, 5.8rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.bis-service-page__section-copy { max-width: 68rem; color: color-mix(in srgb, var(--service-ink) 78%, transparent); line-height: 1.65; }
+.bis-service-page__section-copy :first-child { margin-top: 0; }
+.bis-service-page__section-copy :last-child { margin-bottom: 0; }
+
+.bis-service-page__button {
+  display: inline-flex;
+  min-height: 4.8rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 2rem;
+  border: 2px solid var(--service-ink);
+  border-radius: 0.3rem;
+  background: var(--service-pink);
+  color: var(--service-ink);
+  box-shadow: 0.45rem 0.45rem 0 var(--service-ink);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.bis-service-page__button:hover {
+  background: var(--service-acid);
+  color: var(--service-ink);
+  box-shadow: 0.6rem 0.6rem 0 var(--service-mint);
+  transform: translate(-0.15rem, -0.15rem);
+}
+
+.bis-service-page__button--light { background: var(--service-paper); }
+.bis-service-page__button:focus-visible,
+.bis-service-page summary:focus-visible,
+.bis-service-page a:focus-visible {
+  outline: 0.3rem solid var(--service-mint);
+  outline-offset: 0.3rem;
+}
+
+.bis-service-page__account-panel,
+.bis-service-page__contact-panel,
+.bis-service-page__app-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: center;
+  padding: clamp(2.4rem, 5vw, 4.6rem);
+  border: 2px solid var(--service-ink);
+  background: var(--service-paper);
+  box-shadow: 0.7rem 0.7rem 0 var(--service-mint);
+}
+
+.bis-service-page__account-panel h2,
+.bis-service-page__contact-panel h2,
+.bis-service-page__app-panel h2 {
+  margin: 0 0 0.8rem;
+  color: var(--service-ink);
+  font-family: var(--font-heading-family);
+  font-size: clamp(2.5rem, 4vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.bis-service-page__account-panel .rte,
+.bis-service-page__contact-panel .rte,
+.bis-service-page__app-panel .rte { max-width: 68rem; color: color-mix(in srgb, var(--service-ink) 76%, transparent); }
+
+.bis-service-page__timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr));
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: service-step;
+}
+
+.bis-service-page__step {
+  position: relative;
+  min-height: 25rem;
+  padding: 2.5rem 2.2rem;
+  overflow: hidden;
+  border: 2px solid var(--service-ink);
+  background: var(--service-paper);
+  box-shadow: 0.55rem 0.55rem 0 var(--service-ink);
+  counter-increment: service-step;
+}
+
+.bis-service-page__step:nth-child(3n + 2) { box-shadow: 0.55rem 0.55rem 0 var(--service-mint); }
+.bis-service-page__step:nth-child(3n) { box-shadow: 0.55rem 0.55rem 0 var(--service-pink); }
+
+.bis-service-page__step-number {
+  display: flex;
+  width: 4.4rem;
+  height: 4.4rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+  border: 1px solid var(--service-ink);
+  border-radius: 50%;
+  background: var(--service-acid);
+  color: var(--service-ink);
+  font-weight: 800;
+}
+
+.bis-service-page__step-number:empty::before { content: counter(service-step, decimal-leading-zero); }
+
+.bis-service-page__step h3,
+.bis-service-page__policy-card h3 {
+  margin: 0 0 1rem;
+  color: var(--service-ink);
+  font-family: var(--font-heading-family);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.bis-service-page__step .rte,
+.bis-service-page__policy-card .rte { color: color-mix(in srgb, var(--service-ink) 76%, transparent); line-height: 1.6; }
+.bis-service-page__step .rte :last-child,
+.bis-service-page__policy-card .rte :last-child { margin-bottom: 0; }
+
+.bis-service-page__notice-grid,
+.bis-service-page__policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.bis-service-page__notice,
+.bis-service-page__policy-card {
+  padding: clamp(2.2rem, 4vw, 3.5rem);
+  border: 2px solid var(--service-ink);
+  background: var(--service-paper);
+}
+
+.bis-service-page__notice { border-left: 0.8rem solid var(--service-mint); }
+.bis-service-page__notice:nth-child(even) { border-left-color: var(--service-pink); }
+.bis-service-page__notice h3 { margin: 0 0 0.8rem; font-size: 2rem; }
+.bis-service-page__notice .rte { line-height: 1.6; }
+
+.bis-service-page__policy-card { position: relative; padding-top: 6rem; box-shadow: 0.6rem 0.6rem 0 var(--service-ink); }
+.bis-service-page__policy-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1.2rem;
+  background: var(--card-accent, var(--service-mint));
+  content: '';
+}
+.bis-service-page__policy-card--pink { --card-accent: var(--service-pink); }
+.bis-service-page__policy-card--acid { --card-accent: var(--service-acid); }
+.bis-service-page__policy-card--green { --card-accent: var(--service-green); }
+
+.bis-service-page__details-list { display: grid; gap: 1.2rem; }
+.bis-service-page__details {
+  border: 2px solid var(--service-ink);
+  background: var(--service-paper);
+  box-shadow: 0.35rem 0.35rem 0 var(--service-mint);
+}
+
+.bis-service-page__details summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: center;
+  min-height: 6.4rem;
+  padding: 1.6rem 2rem;
+  color: var(--service-ink);
+  cursor: pointer;
+  font-family: var(--font-heading-family);
+  font-size: clamp(1.7rem, 2.5vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.25;
+  list-style: none;
+}
+
+.bis-service-page__details summary::-webkit-details-marker { display: none; }
+.bis-service-page__details summary::after {
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--service-ink);
+  border-radius: 50%;
+  background: var(--service-acid);
+  content: '+';
+  font-family: var(--font-body-family);
+  font-size: 2rem;
+  line-height: 1;
+  transition: transform 160ms ease;
+}
+
+.bis-service-page__details-kicker {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--service-pink);
+  font-family: var(--font-body-family);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.bis-service-page__details-question { display: block; }
+
+.bis-service-page__details[open] summary { background: color-mix(in srgb, var(--service-mint) 18%, var(--service-paper)); }
+.bis-service-page__details[open] summary::after { transform: rotate(45deg); }
+.bis-service-page__details-answer { padding: 0 2rem 2rem; color: color-mix(in srgb, var(--service-ink) 78%, transparent); line-height: 1.7; }
+.bis-service-page__details-answer :first-child { margin-top: 0; }
+.bis-service-page__details-answer :last-child { margin-bottom: 0; }
+
+.bis-service-page__faq-category {
+  margin: 3.5rem 0 1.4rem;
+  color: var(--service-pink);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.bis-service-page__faq-category:first-child { margin-top: 0; }
+
+.bis-service-page__contact-panel { background: var(--service-green); color: #fff; box-shadow-color: var(--service-pink); }
+.bis-service-page__contact-panel h2 { color: #fff; }
+.bis-service-page__contact-panel .rte { color: rgba(255, 255, 255, 0.8); }
+.bis-service-page__app-panel { display: block; }
+.bis-service-page__app-block + .bis-service-page__app-block { margin-top: 2rem; }
+
+@media screen and (max-width: 989px) {
+  .bis-service-page__hero { grid-template-columns: 1fr; align-items: start; }
+  .bis-service-page__hero-aside { max-width: 48rem; transform: none; }
+  .bis-service-page__section-head { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 749px) {
+  .bis-service-page__shell { width: min(100% - 2.4rem, 120rem); }
+  .bis-service-page__hero { padding: 4rem 2.2rem; box-shadow: 0.5rem 0.5rem 0 var(--service-pink); }
+  .bis-service-page__hero::after { top: -6rem; right: -7rem; }
+  .bis-service-page__title { font-size: clamp(4.1rem, 16vw, 6.4rem); }
+  .bis-service-page__account-panel,
+  .bis-service-page__contact-panel { grid-template-columns: 1fr; }
+  .bis-service-page__account-panel .bis-service-page__button,
+  .bis-service-page__contact-panel .bis-service-page__button { width: 100%; }
+  .bis-service-page__notice-grid,
+  .bis-service-page__policy-grid { grid-template-columns: 1fr; }
+  .bis-service-page__step { min-height: 0; }
+  .bis-service-page__step-number { margin-bottom: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bis-service-page__button,
+  .bis-service-page__details summary::after { transition: none; }
+  .bis-service-page__button:hover { transform: none; }
+}

@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "main": {
+      "type": "bis-faq",
+      "blocks": {
+        "category_orders": {
+          "type": "category",
+          "settings": { "heading": "Orders & delivery" }
+        },
+        "faq_order_status": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Orders",
+            "question": "Where can I check my order?",
+            "answer": "<p>Sign in to your customer account to review your order history and open the order you want to check.</p>"
+          }
+        },
+        "faq_change_order": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Orders",
+            "question": "Can I change an order after checkout?",
+            "answer": "<p>Contact the support team as soon as possible. Changes may not be possible once an order has entered processing or dispatch.</p>"
+          }
+        },
+        "faq_delivery": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Delivery",
+            "question": "Why has my tracking not updated?",
+            "answer": "<p>A carrier may need time to scan a parcel after dispatch, and updates can pause between facilities. Contact support if the expected delivery window has passed.</p>"
+          }
+        },
+        "category_products": {
+          "type": "category",
+          "settings": { "heading": "Products & care" }
+        },
+        "faq_product": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Products",
+            "question": "Where can I find product details?",
+            "answer": "<p>Check the product page for the description, available options and any item-specific guidance supplied by the store.</p>"
+          }
+        },
+        "faq_care": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Care",
+            "question": "How should I care for my purchase?",
+            "answer": "<p>Follow any care instructions included with the item or shown on its product page. Contact support before using an unlisted cleaning or maintenance method.</p>"
+          }
+        },
+        "category_returns": {
+          "type": "category",
+          "settings": { "heading": "Returns & support" }
+        },
+        "faq_return": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Returns",
+            "question": "How do I start a return?",
+            "answer": "<p>Review the Shipping & Returns page, then contact support with your order number and the item you would like to return.</p>"
+          }
+        },
+        "faq_contact": {
+          "type": "faq",
+          "settings": {
+            "kicker": "Support",
+            "question": "What should I include when contacting support?",
+            "answer": "<p>Include your order number when relevant, a concise description of the issue and clear photos if an item arrived damaged.</p>"
+          }
+        }
+      },
+      "block_order": ["category_orders", "faq_order_status", "faq_change_order", "faq_delivery", "category_products", "faq_product", "faq_care", "category_returns", "faq_return", "faq_contact"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

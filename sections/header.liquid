@@ -708,17 +708,17 @@
       </details-modal>
 
       {%- if shop.customer_accounts_enabled -%}
+        {%- liquid
+          if customer
+            assign account_label = 'customer.account_fallback' | t
+          else
+            assign account_label = 'customer.log_in' | t
+          endif
+        -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
           {% render 'icon-account' %}
-          <span class="visually-hidden">
-            {%- liquid
-              if customer
-                echo 'customer.account_fallback' | t
-              else
-                echo 'customer.log_in' | t
-              endif
-            -%}
-          </span>
+          <span class="header__account-label" aria-hidden="true">{{ account_label }}</span>
+          <span class="visually-hidden">{{ account_label }}</span>
         </a>
       {%- endif -%}
 

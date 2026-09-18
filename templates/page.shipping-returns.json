@@ -1,0 +1,93 @@
+{
+  "sections": {
+    "main": {
+      "type": "bis-shipping-returns",
+      "blocks": {
+        "policy_dispatch": {
+          "type": "policy",
+          "settings": {
+            "kicker": "Getting ready",
+            "heading": "Dispatch",
+            "text": "<p>Add the working days normally needed to prepare an order before it leaves your store.</p>",
+            "accent": "mint"
+          }
+        },
+        "policy_shipping": {
+          "type": "policy",
+          "settings": {
+            "kicker": "On the move",
+            "heading": "Shipping",
+            "text": "<p>Add your delivery estimates, available regions and any shipping charges or thresholds.</p>",
+            "accent": "acid"
+          }
+        },
+        "policy_returns": {
+          "type": "policy",
+          "settings": {
+            "kicker": "Changed your mind",
+            "heading": "Returns",
+            "text": "<p>State your return window, acceptable item condition and any products that cannot be returned.</p>",
+            "accent": "pink"
+          }
+        },
+        "policy_refunds": {
+          "type": "policy",
+          "settings": {
+            "kicker": "After review",
+            "heading": "Refunds & exchanges",
+            "text": "<p>Explain when refunds are issued, how exchanges are handled and whether any fees apply.</p>",
+            "accent": "green"
+          }
+        },
+        "step_contact": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "heading": "Contact the team",
+            "text": "<p>Share your order number, the item involved and a short explanation of what you need.</p>"
+          }
+        },
+        "step_prepare": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "heading": "Prepare the item",
+            "text": "<p>Keep the product, included parts and original packaging together while your request is reviewed.</p>"
+          }
+        },
+        "step_follow": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "heading": "Follow the instructions",
+            "text": "<p>Use the return guidance provided by the team and retain any shipping receipt until the process is complete.</p>"
+          }
+        },
+        "detail_refund": {
+          "type": "detail",
+          "settings": {
+            "heading": "When will my refund arrive?",
+            "text": "<p>Add your inspection and refund processing timeline here. Banking providers may need additional time to post the credit.</p>"
+          }
+        },
+        "detail_exchange": {
+          "type": "detail",
+          "settings": {
+            "heading": "Can I exchange an item?",
+            "text": "<p>Explain whether direct exchanges are available or whether customers should return an item and place a new order.</p>"
+          }
+        },
+        "detail_damage": {
+          "type": "detail",
+          "settings": {
+            "heading": "What if my order arrives damaged?",
+            "text": "<p>Ask customers to contact the team promptly with their order details and clear photos of the item and packaging.</p>"
+          }
+        }
+      },
+      "block_order": ["policy_dispatch", "policy_shipping", "policy_returns", "policy_refunds", "step_contact", "step_prepare", "step_follow", "detail_refund", "detail_exchange", "detail_damage"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
