@@ -4,9 +4,6 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
-{%- unless settings.cart_type == 'drawer' -%}
-  {{ 'cart-experience.css' | asset_url | stylesheet_tag }}
-{%- endunless -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -26,15 +23,9 @@
   <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 {%- endunless -%}
 
-<cart-items class="bis-cart-page page-width{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
+<cart-items class="page-width{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
   <div class="title-wrapper-with-link">
-    <div class="cart-page__heading-group">
-      <span class="cart-page__eyebrow" aria-hidden="true">Your selection</span>
-      <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <span id="main-cart-count" class="cart-page__count cart-count-slot" aria-live="polite">
-        {{ 'sections.header.cart_count' | t: count: cart.item_count }}
-      </span>
-    </div>
+    <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
     <a href="{{ routes.all_products_collection_url }}" class="underlined-link">{{ 'general.continue_shopping' | t }}</a>
   </div>
 

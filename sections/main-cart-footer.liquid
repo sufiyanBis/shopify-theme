@@ -5,11 +5,7 @@
 
 <div class="page-width{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
   <div>
-    <div class="cart__footer cart-summary">
-      <div class="cart-summary__heading">
-        <span class="cart-summary__eyebrow" aria-hidden="true">Order ticket</span>
-        <h2>{{ 'sections.cart.title' | t }}</h2>
-      </div>
+    <div class="cart__footer">
       {%- if settings.show_cart_note -%}
         <cart-note class="cart__note field">
           <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
@@ -24,10 +20,6 @@
       {%- endif -%}
 
       <div class="cart__blocks">
-        <div id="main-cart-game-cta" class="cart-game-cta-slot">
-          {% render 'cart-game-cta' %}
-        </div>
-
         {% for block in section.blocks %}
           {%- case block.type -%}
             {%- when '@app' -%}
@@ -94,8 +86,6 @@
               {%- endif -%}
           {%- endcase -%}
         {% endfor %}
-
-        {% render 'cart-trust-stamps' %}
 
         <div id="cart-errors"></div>
       </div>

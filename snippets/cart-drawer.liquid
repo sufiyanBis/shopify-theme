@@ -6,7 +6,6 @@
 {% endcomment %}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-{{ 'cart-experience.css' | asset_url | stylesheet_tag }}
 
 <style>
   .drawer {
@@ -57,13 +56,7 @@
         </div>
       {%- endif -%}
       <div class="drawer__header">
-        <div class="drawer__title-group">
-          <span class="drawer__eyebrow" aria-hidden="true">Checkout dock</span>
-          <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
-          <span class="drawer__count" aria-live="polite">
-            {{ 'sections.header.cart_count' | t: count: cart.item_count }}
-          </span>
-        </div>
+        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
         <button
           class="drawer__close"
           type="button"
@@ -413,10 +406,6 @@
             {%- endif -%}
           </small>
         </div>
-
-        {% render 'cart-game-cta', compact: true %}
-
-        {% render 'cart-trust-stamps', compact: true %}
 
         <!-- CTAs -->
 
