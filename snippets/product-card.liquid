@@ -5,6 +5,7 @@
 <div
   class="custom-product-card"
   data-product-card
+  data-product-id="{{ product_item.id }}"
   style="--product-card-bg: {{ card_background | default: '#ffffff' }};"
 >
     
@@ -49,6 +50,8 @@
   type="button"
   class="custom-product-card__wishlist"
   data-wishlist
+  data-product-id="{{ product_item.id }}"
+  data-product-title="{{ product_item.title | escape }}"
   aria-label="Add {{ product_item.title | escape }} to wishlist"
   aria-pressed="false"
 >
@@ -84,7 +87,7 @@
 
       <div class="custom-product-card__pack-header">
 
-        <span>₹</span>
+
 
         <span data-selected-variant-title>
           {{ product_item.selected_or_first_available_variant.title }}
@@ -111,7 +114,7 @@
             "
             data-variant-id="{{ variant.id }}"
             data-variant-title="{{ variant.title | escape }}"
-            data-variant-price="{{ variant.price }}"
+            data-variant-price="{{ variant.price | money | escape }}"
             {% unless variant.available %}
               disabled
             {% endunless %}

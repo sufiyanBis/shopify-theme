@@ -466,3 +466,29 @@
 .play-with-us__apply:hover {
   background: #D92367;
 }
+
+
+
+.git-test-message {
+  max-width: 900px;
+  margin: 0 auto 25px;
+  padding: 20px;
+
+  text-align: center;
+
+  background: #6B7280;
+  color: #FFFFFF;
+
+  border-radius: 16px;
+}
+
+.git-test-message h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.git-test-message p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.9;
+}

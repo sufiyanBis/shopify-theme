@@ -450,7 +450,7 @@
    WISHLIST
    ========================================================= */
 
-.custom-products .wishlist-button {
+.custom-products .custom-product-card__wishlist {
   position: absolute;
 
   top: 14px;
@@ -482,13 +482,13 @@
     box-shadow 0.2s ease;
 }
 
-.custom-products .wishlist-button:hover {
+.custom-products .custom-product-card__wishlist:hover {
   transform: scale(1.04);
 
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
 }
 
-.custom-products .wishlist-button svg {
+.custom-products .custom-product-card__wishlist svg {
   width: 24px;
   height: 24px;
 
@@ -497,8 +497,18 @@
   fill: none;
 }
 
-.custom-products .wishlist-button svg * {
+.custom-products .custom-product-card__wishlist svg * {
   stroke: #EF2F76;
+}
+
+.custom-products .custom-product-card__wishlist.is-wishlisted {
+  background: #EF2F76;
+  color: #ffffff;
+}
+
+.custom-product-card__heart {
+  font-size: 28px;
+  line-height: 1;
 }
 
 /* =========================================================
@@ -2427,3 +2437,5 @@ product-form.product-form form {
 body {
   outline: 2px solid transparent;
 }
+
+

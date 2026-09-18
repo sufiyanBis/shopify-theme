@@ -235,7 +235,7 @@
         id="ProductAccordion-{{ block.id }}-{{ section.id }}"
       >
 
-        {% case block.id %}
+        {% case block.settings.content_source %}
 
           {% when 'ingredients' %}
 
@@ -447,7 +447,8 @@
                           {%- for i in (1..number_of_slides) -%}
                             <div id="Slide-{{ block.id }}-{{ forloop.index }}" class="complementary-slide complementary-slide--{{ settings.card_style }} grid__item slider__slide slideshow__slide" tabindex="-1" role="group"{% if number_of_slides > 1 %} aria-roledescription="{{ 'sections.slideshow.slide' | t }}" aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"{% endif %}>
                               <ul class="list-unstyled" role="list">
-                                {%- for product in recommendations.products limit: block.settings.products_per_page offset: continue -%}
+                                {%- assign product_offset = forloop.index0 | times: block.settings.products_per_page -%}
+                                {%- for product in recommendations.products limit: block.settings.products_per_page offset: product_offset -%}
                                   <li>
                                     {% render 'card-product',
                                       card_product: product,
@@ -865,6 +866,18 @@
           "default": "Collapsible row",
           "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "content_source",
+          "label": "Content source",
+          "options": [
+            { "value": "manual", "label": "Manual content" },
+            { "value": "ingredients", "label": "Ingredients metafield" },
+            { "value": "benefits", "label": "Benefits metafield" },
+            { "value": "shipping", "label": "Storage and shipping metafield" }
+          ],
+          "default": "manual"
         },
         {
           "type": "select",
@@ -1585,4 +1598,3 @@
   ]
 }
 {% endschema %}
-

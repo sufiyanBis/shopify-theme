@@ -1,5 +1,6 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{{ 'catalog-showroom.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   @media screen and (max-width: 749px) {
@@ -9,9 +10,13 @@
   }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+<div class="collection-hero catalog-collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width">
     <div class="collection-hero__text-wrapper">
+      <div class="catalog-collection-hero__meta" aria-label="{{ 'sections.collection_template.title' | t | escape }}">
+        <span>Bis Research / {{ 'sections.collection_template.title' | t }}</span>
+        <span>{{ 'products.facets.product_count_simple' | t: count: collection.products_count }}</span>
+      </div>
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
@@ -20,6 +25,10 @@
       {%- if section.settings.show_collection_description -%}
         <div class="collection-hero__description rte">{{ collection.description }}</div>
       {%- endif -%}
+
+      <div class="catalog-collection-hero__axis" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
     </div>
 
     {%- if section.settings.show_collection_image and collection.image -%}

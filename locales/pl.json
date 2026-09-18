@@ -108,6 +108,9 @@
   },
   "products": {
     "product": {
+      "selling_plans": {
+        "one_time_purchase": "One-time purchase"
+      },
       "add_to_cart": "Dodaj do koszyka",
       "description": "Opis",
       "on_sale": "W promocji",
