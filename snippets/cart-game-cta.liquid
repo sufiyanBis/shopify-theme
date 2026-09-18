@@ -1,0 +1,23 @@
+{{ 'cart-game-cta.css' | asset_url | stylesheet_tag }}
+
+{%- if cart != empty -%}
+  {%- assign play_page_url = pages['play-with-us'].url | default: '/pages/play-with-us' -%}
+  {%- assign play_embed_url = play_page_url | append: '?view=play-with-us-embed' -%}
+  <aside class="cart-game-cta{% if compact %} cart-game-cta--compact{% endif %}" aria-label="{{ settings.cart_game_cta_text | escape }}">
+    <span class="cart-game-cta__mark" aria-hidden="true">%</span>
+    <span class="cart-game-cta__copy">
+      <strong>{{ settings.cart_game_cta_text | escape }}</strong>
+      <span>{{ settings.cart_game_cta_subtext | escape }}</span>
+    </span>
+    <a
+      class="cart-game-cta__link"
+      href="{{ play_embed_url }}"
+      data-play-with-us-modal-trigger
+      aria-haspopup="dialog"
+      aria-controls="PlayWithUsModal"
+    >
+      {{ settings.cart_game_cta_link_label | escape }}
+      <span aria-hidden="true">→</span>
+    </a>
+  </aside>
+{%- endif -%}

@@ -1548,6 +1548,80 @@
       },
       {
         "type": "header",
+        "content": "Play and win promotion"
+      },
+      {
+        "type": "text",
+        "id": "cart_game_cta_text",
+        "label": "Promotion heading",
+        "default": "Want an extra discount? Play & win"
+      },
+      {
+        "type": "text",
+        "id": "cart_game_cta_subtext",
+        "label": "Promotion supporting text",
+        "default": "Spin for a reward before checkout."
+      },
+      {
+        "type": "text",
+        "id": "cart_game_cta_link_label",
+        "label": "Promotion link label",
+        "default": "Play now"
+      },
+      {
+        "type": "text",
+        "id": "cart_game_modal_heading",
+        "label": "Game modal heading",
+        "default": "Prize vault"
+      },
+      {
+        "type": "text",
+        "id": "cart_game_modal_loading",
+        "label": "Game modal loading message",
+        "default": "Preparing your wheel…"
+      },
+      {
+        "type": "text",
+        "id": "cart_game_modal_error",
+        "label": "Game modal fallback message",
+        "default": "The wheel is taking longer than expected."
+      },
+      {
+        "type": "text",
+        "id": "cart_game_modal_fallback_label",
+        "label": "Game modal fallback link label",
+        "default": "Open the wheel directly"
+      },
+      {
+        "type": "header",
+        "content": "Cart benefit stamps"
+      },
+      {
+        "type": "text",
+        "id": "cart_benefit_1",
+        "label": "Benefit 1",
+        "default": "Thoughtfully Designed"
+      },
+      {
+        "type": "text",
+        "id": "cart_benefit_2",
+        "label": "Benefit 2",
+        "default": "Carefully Selected"
+      },
+      {
+        "type": "text",
+        "id": "cart_benefit_3",
+        "label": "Benefit 3",
+        "default": "Made for Everyday Use"
+      },
+      {
+        "type": "text",
+        "id": "cart_benefit_4",
+        "label": "Benefit 4",
+        "default": "Quality You Can Trust"
+      },
+      {
+        "type": "header",
         "content": "t:settings_schema.cart.settings.cart_drawer.header"
       },
       {

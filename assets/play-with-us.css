@@ -130,12 +130,11 @@
 
   background:
     conic-gradient(
-      #EF2F76 0deg 60deg,
-      #4AA1BE 60deg 120deg,
-      #DCC91D 120deg 180deg,
-      #7F9424 180deg 240deg,
-      #EF2F76 240deg 300deg,
-      #4AA1BE 300deg 360deg
+      #EF2F76 0deg 72deg,
+      #4AA1BE 72deg 144deg,
+      #DCC91D 144deg 216deg,
+      #7F9424 216deg 288deg,
+      #34495E 288deg 360deg
     );
 
   transition:
@@ -181,28 +180,26 @@
 /* Position text around the wheel */
 
 .segment-1 {
-  transform: rotate(30deg) translateY(-145px) rotate(-30deg);
+  transform: rotate(36deg) translateY(-145px) rotate(-36deg);
 }
 
 .segment-2 {
-  transform: rotate(90deg) translateY(-145px) rotate(-90deg);
+  transform: rotate(108deg) translateY(-145px) rotate(-108deg);
 }
 
 .segment-3 {
-  transform: rotate(150deg) translateY(-145px) rotate(-150deg);
+  transform: rotate(180deg) translateY(-145px) rotate(-180deg);
 }
 
 .segment-4 {
-  transform: rotate(210deg) translateY(-145px) rotate(-210deg);
+  transform: rotate(252deg) translateY(-145px) rotate(-252deg);
 }
 
 .segment-5 {
-  transform: rotate(270deg) translateY(-145px) rotate(-270deg);
+  transform: rotate(324deg) translateY(-145px) rotate(-324deg);
 }
 
-.segment-6 {
-  transform: rotate(330deg) translateY(-145px) rotate(-330deg);
-}
+.play-with-us__wheel.is-restoring { transition: none; }
 
 
 /* =========================================================
@@ -324,35 +321,70 @@
 }
 
 
-/* =========================================================
-   RESET
-   ========================================================= */
+.play-with-us__odds {
+  max-width: 440px;
+  margin: 18px auto 0;
+  border-top: 1px solid rgba(23, 32, 42, 0.16);
+  border-bottom: 1px solid rgba(23, 32, 42, 0.16);
+}
 
-.play-with-us__reset-button {
-  display: none;
-
-  margin: 15px auto 0;
-
-  min-height: 46px;
-
-  padding: 0 22px;
-
-  border: 1px solid #D9DDE3;
-  border-radius: 12px;
-
-  background: #FFFFFF;
+.play-with-us__odds summary {
+  padding: 12px 4px;
   color: #17202A;
-
-  font-family: inherit;
-
-  font-size: 15px;
-  font-weight: 700;
-
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
-.play-with-us__reset-button.is-visible {
-  display: block;
+.play-with-us__odds summary:focus-visible {
+  outline: 3px solid #45C0B6;
+  outline-offset: 3px;
+}
+
+.play-with-us__odds ul {
+  margin: 0;
+  padding: 0 8px 8px;
+  list-style: none;
+}
+
+.play-with-us__odds li {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 5px 0;
+  color: #4D5661;
+  font-size: 13px;
+}
+
+.play-with-us__odds li[hidden] { display: none; }
+
+.play-with-us__odds li strong { color: #17202A; }
+
+.play-with-us__odds p {
+  margin: 0;
+  padding: 4px 8px 14px;
+  color: #6B7280;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.play-with-us__countdown,
+.play-with-us__eligibility-note {
+  max-width: 600px;
+  margin: 12px auto 0;
+  color: #4D5661;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.play-with-us__countdown {
+  color: #17202A;
+  font-weight: 800;
 }
 
 
@@ -391,33 +423,28 @@
   .segment-2,
   .segment-3,
   .segment-4,
-  .segment-5,
-  .segment-6 {
+  .segment-5 {
     transform-origin: center;
   }
 
   .segment-1 {
-    transform: rotate(30deg) translateY(-110px) rotate(-30deg);
+    transform: rotate(36deg) translateY(-110px) rotate(-36deg);
   }
 
   .segment-2 {
-    transform: rotate(90deg) translateY(-110px) rotate(-90deg);
+    transform: rotate(108deg) translateY(-110px) rotate(-108deg);
   }
 
   .segment-3 {
-    transform: rotate(150deg) translateY(-110px) rotate(-150deg);
+    transform: rotate(180deg) translateY(-110px) rotate(-180deg);
   }
 
   .segment-4 {
-    transform: rotate(210deg) translateY(-110px) rotate(-210deg);
+    transform: rotate(252deg) translateY(-110px) rotate(-252deg);
   }
 
   .segment-5 {
-    transform: rotate(270deg) translateY(-110px) rotate(-270deg);
-  }
-
-  .segment-6 {
-    transform: rotate(330deg) translateY(-110px) rotate(-330deg);
+    transform: rotate(324deg) translateY(-110px) rotate(-324deg);
   }
 
   .play-with-us__wheel-center {
@@ -461,10 +488,23 @@
   font-weight: 700;
 
   cursor: pointer;
+  text-decoration: none;
 }
 
 .play-with-us__apply:hover {
   background: #D92367;
+}
+
+.play-with-us__apply:focus-visible {
+  outline: 3px solid #45C0B6;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-with-us__wheel,
+  .play-with-us__spin-button { transition-duration: 0.01ms !important; }
+
+  .play-with-us__spin-button:hover { transform: none; }
 }
 
 

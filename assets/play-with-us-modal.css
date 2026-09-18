@@ -1,0 +1,173 @@
+.play-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 2.4rem;
+  color: #15171c;
+}
+
+.play-modal[hidden] { display: none; }
+
+.play-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 11, 14, 0.78);
+  animation: play-modal-fade 180ms ease-out both;
+}
+
+.play-modal__dialog {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(92vw, 92rem);
+  height: min(90dvh, 82rem);
+  overflow: hidden;
+  border: 1px solid rgba(244, 241, 235, 0.22);
+  border-radius: 0.8rem;
+  background: #15171c;
+  box-shadow:
+    -0.35rem 0 0 #ef2f76,
+    0.35rem 0 0 #45c0b6,
+    0 3rem 8rem rgba(0, 0, 0, 0.48);
+  animation: play-modal-enter 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.play-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 7.2rem;
+  padding: 1.4rem 1.6rem 1.4rem 2.2rem;
+  color: #f4f1eb;
+}
+
+.play-modal__eyebrow {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #45c0b6;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.play-modal__header h2 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.play-modal__close {
+  display: grid;
+  width: 4.4rem;
+  height: 4.4rem;
+  flex: 0 0 auto;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(244, 241, 235, 0.45);
+  border-radius: 50%;
+  background: transparent;
+  color: #f4f1eb;
+  font: inherit;
+  font-size: 2.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.play-modal__close:hover { border-color: #ef2f76; color: #ef2f76; }
+
+.play-modal__close:focus-visible {
+  outline: 0.3rem solid #45c0b6;
+  outline-offset: 0.3rem;
+}
+
+.play-modal__stage {
+  position: relative;
+  min-height: 0;
+  margin: 0 0.8rem 0.8rem;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  background: #f4f1eb;
+}
+
+.play-modal__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff9f0;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.play-modal__stage.is-loaded .play-modal__frame { opacity: 1; }
+
+.play-modal__status {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1.2rem;
+  padding: 2rem;
+  background: #f4f1eb;
+  color: #15171c;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.play-modal__stage.is-loaded .play-modal__status { display: none; }
+
+.play-modal__loader {
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 0.3rem solid rgba(21, 23, 28, 0.18);
+  border-top-color: #ef2f76;
+  border-radius: 50%;
+  animation: play-modal-spin 700ms linear infinite;
+}
+
+.play-modal__status a {
+  display: none;
+  color: #15171c;
+  font-weight: 800;
+  text-underline-offset: 0.3rem;
+}
+
+.play-modal__stage.is-error .play-modal__loader { display: none; }
+.play-modal__stage.is-error .play-modal__status a { display: inline; }
+
+.play-modal-open { overflow: hidden; }
+
+@keyframes play-modal-fade { from { opacity: 0; } }
+@keyframes play-modal-enter { from { opacity: 0; transform: translateY(1.8rem) scale(0.985); } }
+@keyframes play-modal-spin { to { transform: rotate(360deg); } }
+
+@media screen and (max-width: 749px) {
+  .play-modal { align-items: end; padding: 0.8rem 0 0; }
+  .play-modal__dialog {
+    width: 100%;
+    height: calc(100dvh - 0.8rem);
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 1.4rem 1.4rem 0 0;
+    box-shadow: 0 -0.3rem 0 #ef2f76, 0 -2rem 6rem rgba(0, 0, 0, 0.45);
+  }
+  .play-modal__header { min-height: 6.4rem; padding: 1.2rem 1.2rem 1.2rem 1.8rem; }
+  .play-modal__stage { margin: 0 0.5rem 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-modal__backdrop,
+  .play-modal__dialog,
+  .play-modal__loader { animation-duration: 0.01ms !important; }
+  .play-modal__frame { transition: none; }
+}

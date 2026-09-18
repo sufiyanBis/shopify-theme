@@ -1,7 +1,21 @@
 {{ 'play-with-us.css' | asset_url | stylesheet_tag }}
 
 
-<div class="play-with-us">
+<div
+  class="play-with-us"
+  data-discount-10="{{ section.settings.discount_code_10 | escape }}"
+  data-discount-15="{{ section.settings.discount_code_15 | escape }}"
+  data-discount-shipping="{{ section.settings.discount_code_shipping | escape }}"
+  data-discount-20="{{ section.settings.discount_code_20 | escape }}"
+  data-discount-5="{{ section.settings.discount_code_5 | escape }}"
+  data-apply-label="{{ section.settings.apply_button_label | escape }}"
+  data-spin-label="{{ section.settings.spin_button_label | escape }}"
+  data-initial-message="{{ section.settings.initial_message | escape }}"
+  data-countdown-label="{{ section.settings.countdown_label | escape }}"
+  data-storage-message="{{ section.settings.storage_fallback_message | escape }}"
+  data-no-rewards-message="{{ section.settings.no_rewards_message | escape }}"
+  data-eligibility-message="{{ section.settings.eligibility_note | escape }}"
+>
 
   <div class="play-with-us__container">
 
@@ -26,11 +40,11 @@
           data-wheel
         >
           <div class="play-with-us__segment segment-1">
-            10% OFF
+            5% OFF
           </div>
 
           <div class="play-with-us__segment segment-2">
-            15% OFF
+            10% OFF
           </div>
 
           <div class="play-with-us__segment segment-3">
@@ -38,15 +52,11 @@
           </div>
 
           <div class="play-with-us__segment segment-4">
-            20% OFF
+            15% OFF
           </div>
 
           <div class="play-with-us__segment segment-5">
-            5% OFF
-          </div>
-
-          <div class="play-with-us__segment segment-6">
-            TRY AGAIN
+            20% OFF
           </div>
         </div>
 
@@ -65,26 +75,33 @@
         class="play-with-us__spin-button"
         data-spin
       >
-        Spin the Wheel
+        {{ section.settings.spin_button_label }}
       </button>
 
     </div>
+
+    <details class="play-with-us__odds">
+      <summary>{{ section.settings.odds_heading }}</summary>
+      <ul>
+        <li data-odds-prize="five"><span>5% OFF</span><strong data-odds-value>40%</strong></li>
+        <li data-odds-prize="ten"><span>10% OFF</span><strong data-odds-value>30%</strong></li>
+        <li data-odds-prize="shipping"><span>FREE SHIPPING</span><strong data-odds-value>15%</strong></li>
+        <li data-odds-prize="fifteen"><span>15% OFF</span><strong data-odds-value>10%</strong></li>
+        <li data-odds-prize="twenty"><span>20% OFF</span><strong data-odds-value>5%</strong></li>
+      </ul>
+      <p>{{ section.settings.odds_note }}</p>
+    </details>
 
     <div
       class="play-with-us__result"
       data-result
       aria-live="polite"
     >
-      Spin the wheel to reveal your prize!
+      {{ section.settings.initial_message }}
     </div>
 
-    <button
-      type="button"
-      class="play-with-us__reset-button"
-      data-reset
-    >
-      Spin Again
-    </button>
+    <p class="play-with-us__countdown" data-countdown role="status" aria-live="polite" hidden></p>
+    <p class="play-with-us__eligibility-note" data-eligibility-note hidden></p>
 
   </div>
 
@@ -109,6 +126,102 @@
       "id": "description",
       "label": "Description",
       "default": "Spin the wheel and see what surprise you get!"
+    },
+    {
+      "type": "header",
+      "content": "Shopify discount codes"
+    },
+    {
+      "type": "paragraph",
+      "content": "Create matching discounts in Shopify Admin. Leave a code empty to make that prize unavailable."
+    },
+    {
+      "type": "text",
+      "id": "discount_code_10",
+      "label": "10% off code",
+      "default": "SPIN10"
+    },
+    {
+      "type": "text",
+      "id": "discount_code_15",
+      "label": "15% off code",
+      "default": "SPIN15"
+    },
+    {
+      "type": "text",
+      "id": "discount_code_shipping",
+      "label": "Free shipping code",
+      "default": "SPINSHIP"
+    },
+    {
+      "type": "text",
+      "id": "discount_code_20",
+      "label": "20% off code",
+      "default": "SPIN20"
+    },
+    {
+      "type": "text",
+      "id": "discount_code_5",
+      "label": "5% off code",
+      "default": "SPIN5"
+    },
+    {
+      "type": "text",
+      "id": "apply_button_label",
+      "label": "Apply reward button label",
+      "default": "Apply to cart"
+    },
+    {
+      "type": "header",
+      "content": "Eligibility and messages"
+    },
+    {
+      "type": "text",
+      "id": "spin_button_label",
+      "label": "Spin button label",
+      "default": "Spin the Wheel"
+    },
+    {
+      "type": "text",
+      "id": "initial_message",
+      "label": "Initial message",
+      "default": "Spin the wheel to reveal your prize!"
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Countdown label",
+      "default": "You can spin again in"
+    },
+    {
+      "type": "text",
+      "id": "storage_fallback_message",
+      "label": "Storage unavailable message",
+      "default": "Your reward is available for this visit. Browser storage could not save the 24-hour limit."
+    },
+    {
+      "type": "text",
+      "id": "no_rewards_message",
+      "label": "No configured rewards message",
+      "default": "Rewards are temporarily unavailable. Please try again later."
+    },
+    {
+      "type": "text",
+      "id": "odds_heading",
+      "label": "Prize chances heading",
+      "default": "Prize chances"
+    },
+    {
+      "type": "textarea",
+      "id": "odds_note",
+      "label": "Prize chances note",
+      "default": "Prizes without a configured discount code are excluded from the draw."
+    },
+    {
+      "type": "textarea",
+      "id": "eligibility_note",
+      "label": "Eligibility note",
+      "default": "The 24-hour spin limit is stored in this browser. Discount eligibility is confirmed by Shopify when you apply the reward."
     }
   ],
 

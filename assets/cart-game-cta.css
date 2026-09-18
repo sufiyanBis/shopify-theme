@@ -1,0 +1,111 @@
+.cart-game-cta {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 1.6rem 0;
+  padding: 1.3rem 1.4rem;
+  overflow: hidden;
+  border: 1px solid rgba(21, 23, 28, 0.16);
+  border-left: 0.3rem solid #ef2f76;
+  border-radius: 0.4rem;
+  background: #f4f1eb;
+  color: #15171c;
+  box-shadow: 0 0.3rem 0 #45c0b6, 0 1.2rem 2.2rem -1.7rem rgba(21, 23, 28, 0.65);
+}
+
+.cart-game-cta::after {
+  position: absolute;
+  top: -2.2rem;
+  right: 18%;
+  width: 5rem;
+  height: 7rem;
+  border-right: 1px solid rgba(21, 23, 28, 0.1);
+  border-left: 1px solid rgba(21, 23, 28, 0.1);
+  transform: skewX(-25deg);
+  content: '';
+  pointer-events: none;
+}
+
+.cart-game-cta__mark {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border: 1px solid #15171c;
+  border-radius: 50%;
+  background: #e9f957;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0.3rem 0.3rem 0 #15171c;
+}
+
+.cart-game-cta__copy { min-width: 0; line-height: 1.25; }
+
+.cart-game-cta__copy strong,
+.cart-game-cta__copy span { display: block; }
+
+.cart-game-cta__copy strong {
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+.cart-game-cta__copy span {
+  margin-top: 0.25rem;
+  color: rgba(21, 23, 28, 0.67);
+  font-size: 1.1rem;
+}
+
+.cart-game-cta__link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #15171c;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cart-game-cta__link::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.3rem;
+  left: 0;
+  height: 0.2rem;
+  background: #ef2f76;
+  content: '';
+  transform: scaleX(0.25);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.cart-game-cta__link:hover::after { transform: scaleX(1); }
+
+.cart-game-cta__link:focus-visible {
+  outline: 0.3rem solid #45c0b6;
+  outline-offset: 0.4rem;
+}
+
+.cart-notification .cart-game-cta {
+  grid-template-columns: auto minmax(0, 1fr);
+  margin: 0 0 1.4rem;
+}
+
+.cart-notification .cart-game-cta__link {
+  grid-column: 2;
+  justify-self: start;
+}
+
+@media screen and (max-width: 480px) {
+  .cart-game-cta { grid-template-columns: auto minmax(0, 1fr); }
+  .cart-game-cta__link { grid-column: 2; justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-game-cta__link::after { transition: none; }
+}
