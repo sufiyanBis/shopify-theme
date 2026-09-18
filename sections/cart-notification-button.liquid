@@ -1,1 +1,4 @@
-{{ 'general.cart.view' | t: count: cart.item_count }}
+<a href="{{ routes.cart_url }}" class="button button--secondary button--full-width">
+  {{ 'general.cart.view' | t: count: cart.item_count }}
+</a>
+{% render 'cart-game-cta', compact: true %}

@@ -66,6 +66,11 @@ class CartItems extends HTMLElement {
         selector: '.js-contents'
       },
       {
+        id: 'main-cart-count',
+        section: document.getElementById('main-cart-items').dataset.id,
+        selector: '.cart-count-slot'
+      },
+      {
         id: 'cart-icon-bubble',
         section: 'cart-icon-bubble',
         selector: '.shopify-section'
@@ -79,8 +84,17 @@ class CartItems extends HTMLElement {
         id: 'main-cart-footer',
         section: document.getElementById('main-cart-footer').dataset.id,
         selector: '.js-contents'
+      },
+      {
+        id: 'main-cart-game-cta',
+        section: document.getElementById('main-cart-footer').dataset.id,
+        selector: '.cart-game-cta-slot'
       }
     ];
+  }
+
+  getSectionIdsToRender() {
+    return [...new Set(this.getSectionsToRender().map((section) => section.section))];
   }
 
   updateQuantity(line, quantity, name) {
@@ -89,7 +103,7 @@ class CartItems extends HTMLElement {
     const body = JSON.stringify({
       line,
       quantity,
-      sections: this.getSectionsToRender().map((section) => section.section),
+      sections: this.getSectionIdsToRender(),
       sections_url: window.location.pathname
     });
 
@@ -113,6 +127,9 @@ class CartItems extends HTMLElement {
         const cartFooter = document.getElementById('main-cart-footer');
 
         if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
+        if (document.body.classList.contains('template-cart')) {
+          document.body.classList.toggle('template-cart-empty', parsedState.item_count === 0);
+        }
         if (cartDrawerWrapper) cartDrawerWrapper.classList.toggle('is-empty', parsedState.item_count === 0);
 
         this.getSectionsToRender().forEach((section => {

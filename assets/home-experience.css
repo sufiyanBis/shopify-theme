@@ -1,0 +1,304 @@
+.bis-home {
+  --home-ink: #15171c;
+  --home-porcelain: #f4f1eb;
+  --home-paper: #fff;
+  --home-pink: #ef2f76;
+  --home-mint: #45c0b6;
+  --home-acid: #e9f957;
+  --home-green: #123f32;
+  --home-line: rgba(21, 23, 28, 0.18);
+  background: var(--home-porcelain);
+  color: var(--home-ink);
+}
+
+.bis-home #MainContent {
+  overflow-x: clip;
+  background-color: var(--home-porcelain);
+  background-image:
+    linear-gradient(rgba(21, 23, 28, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 23, 28, 0.025) 1px, transparent 1px);
+  background-size: 5.6rem 5.6rem;
+}
+
+.bis-home #MainContent > .shopify-section { position: relative; }
+
+.bis-home #MainContent > .shopify-section + .shopify-section::before {
+  position: absolute;
+  top: -0.3rem;
+  right: max(1.6rem, calc((100% - 140rem) / 2));
+  left: max(1.6rem, calc((100% - 140rem) / 2));
+  z-index: 3;
+  height: 0.35rem;
+  background: linear-gradient(90deg, var(--home-pink) 0 54%, var(--home-mint) 54% 82%, var(--home-acid) 82%);
+  content: '';
+  pointer-events: none;
+}
+
+/* Editorial hero: retain merchant media and content positioning. */
+.bis-home #MainContent .banner {
+  width: min(calc(100% - 4rem), 150rem);
+  max-width: 100%;
+  margin: clamp(2rem, 3vw, 4rem) auto clamp(4.5rem, 7vw, 8rem);
+  overflow: clip;
+  border: 2px solid var(--home-ink);
+  border-radius: 0.6rem;
+  background: var(--home-green);
+  box-shadow: 0 0.8rem 0 var(--home-mint);
+  isolation: isolate;
+}
+
+.bis-home #MainContent .banner::before {
+  min-height: clamp(32rem, 48vw, 66rem);
+}
+
+.bis-home #MainContent .banner::after {
+  border-bottom: 0.6rem solid var(--home-acid);
+  background: linear-gradient(90deg, rgba(18, 63, 50, 0.06), rgba(21, 23, 28, 0.16));
+}
+
+.bis-home #MainContent .banner__media {
+  max-width: 100%;
+  overflow: clip;
+  border-radius: calc(0.6rem - 2px);
+  background: var(--home-green);
+}
+
+.bis-home #MainContent .banner__media img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.bis-home #MainContent .banner__box {
+  max-width: 68rem;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 2px solid var(--home-ink);
+  border-left: 0.7rem solid var(--home-pink);
+  border-radius: 0.4rem;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  box-shadow: 0.7rem 0.7rem 0 var(--home-acid);
+}
+
+.bis-home #MainContent .banner__box--empty { display: none; }
+
+.bis-home #MainContent .banner__heading {
+  color: inherit;
+  font-family: var(--font-heading-family);
+  font-size: clamp(4rem, 7vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.bis-home #MainContent .banner__text { max-width: 48rem; color: inherit; font-size: clamp(1.5rem, 1.8vw, 1.9rem); line-height: 1.6; }
+
+/* Shared homepage section typography and actions. */
+.bis-home #MainContent :is(.collection__title, .title-wrapper-with-link, .multicolumn .title-wrapper-with-link, .rich-text__wrapper) {
+  position: relative;
+}
+
+.bis-home #MainContent :is(.collection__title .title, .collection-list-title, .multicolumn-list + .center, .rich-text__heading, .collage-wrapper-title) {
+  font-family: var(--font-heading-family);
+}
+
+.bis-home #MainContent :is(.collection__title .title, .collection-list-title, .multicolumn .title, .rich-text__heading, .collage-wrapper-title) {
+  margin-bottom: clamp(2.5rem, 4vw, 4.5rem);
+  color: inherit;
+  font-size: clamp(3.6rem, 6vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.bis-home #MainContent .button {
+  min-height: 5rem;
+  border: 2px solid var(--home-ink);
+  border-radius: 0.3rem;
+  background: var(--home-pink);
+  color: var(--home-ink);
+  box-shadow: 0.45rem 0.45rem 0 var(--home-ink);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.bis-home #MainContent .button::before,
+.bis-home #MainContent .button::after { content: none; }
+
+.bis-home #MainContent .button--secondary {
+  background: var(--home-paper);
+  color: var(--home-ink);
+}
+
+.bis-home #MainContent .button:hover:not([aria-disabled='true']) {
+  transform: translate(0.2rem, 0.2rem);
+  box-shadow: 0.25rem 0.25rem 0 var(--home-ink);
+}
+
+.bis-home #MainContent :is(a, button, summary):focus-visible {
+  outline: 0.3rem solid var(--home-green);
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.55rem var(--home-mint);
+}
+
+/* The existing custom archive keeps its functionality and 3D card behavior. */
+.bis-home #MainContent .catalog-showroom--custom {
+  border-top: 1px solid var(--home-ink);
+  border-bottom: 1px solid var(--home-ink);
+}
+
+.bis-home #MainContent .catalog-showroom__intro { border-bottom: 2px solid var(--home-ink); }
+.bis-home #MainContent .catalog-showroom__count span { display: inline-block; padding: 0.55rem 0.8rem; border: 1px solid var(--home-ink); background: var(--home-acid); color: var(--home-ink); }
+
+/* Native featured collection remains slider-powered and merchant-configurable. */
+.bis-home #MainContent .collection {
+  padding-right: max(1.6rem, calc((100% - 140rem) / 2));
+  padding-left: max(1.6rem, calc((100% - 140rem) / 2));
+}
+
+.bis-home #MainContent .collection > .page-width,
+.bis-home #MainContent .collection slider-component.page-width,
+.bis-home #MainContent .collection slider-component.page-width-desktop { max-width: 140rem; padding-right: 0; padding-left: 0; }
+
+.bis-home #MainContent .collection__title {
+  max-width: 140rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 1.8rem;
+  border-bottom: 2px solid var(--home-ink);
+}
+
+.bis-home #MainContent .collection .product-grid { align-items: stretch; gap: clamp(1.5rem, 2.5vw, 3rem); }
+.bis-home #MainContent .collection .product-grid .grid__item { height: auto; }
+
+.bis-home #MainContent .collection .card-wrapper {
+  height: 100%;
+  border: 1px solid var(--home-ink);
+  border-radius: 0.55rem;
+  background: var(--home-paper);
+  box-shadow: 0.65rem 0.7rem 0 rgba(21, 23, 28, 0.12);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.bis-home #MainContent .collection .card-wrapper:hover,
+.bis-home #MainContent .collection .card-wrapper:focus-within {
+  border-color: var(--home-pink);
+  box-shadow: -0.3rem 0 0 var(--home-pink), 0.3rem 0 0 var(--home-mint), 0 1.2rem 0 rgba(21, 23, 28, 0.1);
+  transform: translateY(-0.5rem);
+}
+
+.bis-home #MainContent .collection .card { height: 100%; background: transparent; }
+.bis-home #MainContent .collection .card__inner { width: calc(100% - 1.6rem); margin: 0.8rem; overflow: hidden; border: 1px solid var(--home-line); border-radius: 0.3rem; background: var(--home-porcelain); }
+.bis-home #MainContent .collection .card__content { padding: 1.2rem 1.5rem 1.7rem; }
+.bis-home #MainContent .collection .card__information { padding: 0; }
+.bis-home #MainContent .collection .card__heading { color: var(--home-ink); font-size: clamp(1.5rem, 2vw, 2.2rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; }
+.bis-home #MainContent .collection .price { margin-top: 1rem; color: var(--home-ink); font-weight: 800; }
+.bis-home #MainContent .collection .badge { border: 1px solid var(--home-ink); border-radius: 0.2rem; background: var(--home-acid); color: var(--home-ink); font-weight: 800; }
+
+.bis-home #MainContent .slider-buttons { gap: 1rem; margin-top: 2.5rem; }
+.bis-home #MainContent .slider-button { width: 4.4rem; height: 4.4rem; border: 1px solid var(--home-ink); border-radius: 50%; background: var(--home-paper); color: var(--home-ink); }
+.bis-home #MainContent .slider-counter { min-width: 5rem; color: var(--home-ink); font-weight: 800; }
+
+/* Editorial image-and-copy feature; colors continue to come from its selected scheme/custom CSS. */
+.bis-home #MainContent .image-with-text {
+  margin-top: clamp(4rem, 7vw, 8rem);
+  margin-bottom: clamp(4rem, 7vw, 8rem);
+}
+
+.bis-home #MainContent .image-with-text__grid {
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  align-items: stretch;
+}
+
+.bis-home #MainContent .image-with-text__media {
+  overflow: hidden;
+  border: 2px solid var(--home-ink);
+  border-radius: 0.5rem;
+  box-shadow: 0.7rem 0.7rem 0 var(--home-mint);
+}
+
+.bis-home #MainContent .image-with-text__content {
+  border: 2px solid var(--home-ink);
+  border-radius: 0.5rem;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  box-shadow: -0.6rem 0.6rem 0 var(--home-pink);
+}
+
+.bis-home #MainContent .image-with-text__heading {
+  color: inherit;
+  font-size: clamp(3.5rem, 6vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.bis-home #MainContent .image-with-text__text { max-width: 48rem; color: inherit; font-size: clamp(1.5rem, 1.8vw, 1.8rem); line-height: 1.65; }
+
+/* Future editor-added standard sections inherit the same visual grammar. */
+.bis-home #MainContent :is(.multicolumn, .rich-text, .collection-list-wrapper, .collage) { color: inherit; }
+
+.bis-home #MainContent :is(.multicolumn-card, .collection-list .card-wrapper, .collage-card) {
+  overflow: hidden;
+  border: 1px solid var(--home-ink);
+  border-radius: 0.45rem;
+  background: var(--home-paper);
+  box-shadow: 0.55rem 0.6rem 0 rgba(21, 23, 28, 0.12);
+}
+
+.bis-home #MainContent .multicolumn-card__info { padding: 2rem; }
+.bis-home #MainContent :is(.multicolumn-card__info h3, .collection-list .card__heading) { color: var(--home-ink); font-weight: 800; letter-spacing: -0.025em; }
+
+.bis-home #MainContent .rich-text__blocks {
+  padding: clamp(2.5rem, 5vw, 5rem);
+  border: 2px solid var(--home-ink);
+  background: var(--home-paper);
+  box-shadow: 0.7rem 0.7rem 0 var(--home-acid);
+}
+
+.bis-home #MainContent .marquee-block {
+  position: relative;
+  z-index: 4;
+  padding: 0.6rem 0;
+  border-top: 2px solid var(--home-ink);
+  border-bottom: 2px solid var(--home-ink);
+  background: var(--home-pink);
+}
+
+.bis-home #MainContent .marquee-block > [class^='ai-marquee-'] { border-radius: 0; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+
+@media screen and (max-width: 989px) {
+  .bis-home #MainContent .collection .product-grid { gap: 1.5rem; }
+  .bis-home #MainContent .collection .card__content { padding: 1rem 1.1rem 1.4rem; }
+}
+
+@media screen and (max-width: 749px) {
+  .bis-home #MainContent { background-size: 4rem 4rem; }
+  .bis-home #MainContent > .shopify-section + .shopify-section::before { right: 1.2rem; left: 1.2rem; }
+  .bis-home #MainContent .banner { width: calc(100% - 3.2rem); margin-top: 1.8rem; box-shadow: 0 0.5rem 0 var(--home-mint); }
+  .bis-home #MainContent .banner::before { min-height: 28rem; }
+  .bis-home #MainContent .banner--mobile-bottom .banner__box { margin: 0; border-right: 0; border-bottom: 0; border-left-width: 0.5rem; box-shadow: none; }
+  .bis-home #MainContent .banner__heading { font-size: clamp(3.4rem, 13vw, 5.4rem); }
+  .bis-home #MainContent .catalog-showroom--custom { padding-top: 5rem; padding-bottom: 5rem; }
+  .bis-home #MainContent .collection { padding-right: 1.2rem; padding-left: 1.2rem; }
+  .bis-home #MainContent .collection .card-wrapper:hover,
+  .bis-home #MainContent .collection .card-wrapper:focus-within { transform: none; }
+  .bis-home #MainContent .image-with-text { margin-top: 4rem; margin-bottom: 4rem; }
+  .bis-home #MainContent .image-with-text__grid { gap: 1.2rem; }
+  .bis-home #MainContent .image-with-text__content { padding: 2.5rem 1.8rem; box-shadow: -0.4rem 0.4rem 0 var(--home-pink); }
+  .bis-home #MainContent .image-with-text__heading { font-size: clamp(3.4rem, 12vw, 5.2rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bis-home #MainContent .button,
+  .bis-home #MainContent .collection .card-wrapper { transition: none; }
+
+  .bis-home #MainContent .button:hover:not([aria-disabled='true']),
+  .bis-home #MainContent .collection .card-wrapper:hover,
+  .bis-home #MainContent .collection .card-wrapper:focus-within { transform: none; }
+}

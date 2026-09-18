@@ -1,6 +1,6 @@
 <section
   id="MainProduct-{{ section.id }}"
-  class="page-width section-{{ section.id }}-padding"
+  class="bis-product page-width section-{{ section.id }}-padding"
   data-section="{{ section.id }}"
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
@@ -10,6 +10,7 @@
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'product-experience.css' | asset_url | stylesheet_tag }}
 
   {%- style -%}
     .section-{{ section.id }}-padding {
@@ -1352,7 +1353,7 @@
         {
           "type": "text",
           "id": "heading_1",
-          "default": "No chemicals",
+          "default": "Thoughtfully Designed",
           "label": "Text 1"
         },
         {
@@ -1371,7 +1372,7 @@
         {
           "type": "text",
           "id": "heading_2",
-          "default": "Nutrient Rich",
+          "default": "Carefully Selected",
           "label": "Text 2"
         },
         {
@@ -1390,7 +1391,7 @@
         {
           "type": "text",
           "id": "heading_3",
-          "default": "100% Vegetarian",
+          "default": "Made for Everyday Use",
           "label": "Text 3"
         },
         {
@@ -1409,7 +1410,7 @@
         {
           "type": "text",
           "id": "heading_4",
-          "default": "Gluten-free",
+          "default": "Quality You Can Trust",
           "label": "Text 4"
         }
       ]
