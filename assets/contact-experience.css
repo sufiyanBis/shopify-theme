@@ -1,0 +1,202 @@
+.bis-contact {
+  --contact-ink: #15171c;
+  --contact-porcelain: #f4f1eb;
+  --contact-paper: #fff;
+  --contact-pink: #ef2f76;
+  --contact-mint: #45c0b6;
+  --contact-acid: #e9f957;
+  --contact-green: #123f32;
+  background: var(--contact-porcelain);
+  color: var(--contact-ink);
+}
+
+.bis-contact #MainContent {
+  overflow-x: clip;
+  background-color: var(--contact-porcelain);
+  background-image:
+    linear-gradient(rgba(21, 23, 28, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 23, 28, 0.03) 1px, transparent 1px);
+  background-size: 4.8rem 4.8rem;
+}
+
+.bis-contact .custom-contact-section {
+  overflow: visible;
+  padding-top: clamp(3rem, 6vw, 7rem);
+  padding-bottom: clamp(5rem, 8vw, 9rem);
+  background: transparent;
+}
+
+.bis-contact .custom-contact-container { max-width: 140rem; }
+
+.bis-contact .custom-contact-stripe {
+  height: 0.6rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--contact-ink);
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--contact-pink) 0 48%, var(--contact-mint) 48% 78%, var(--contact-acid) 78%);
+}
+
+.bis-contact .custom-contact-header {
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+  padding: clamp(3rem, 6vw, 6.5rem);
+  border: 2px solid var(--contact-ink);
+  border-radius: 0.5rem;
+  background: var(--contact-green);
+  color: var(--contact-porcelain);
+  text-align: left;
+  box-shadow: 0 0.7rem 0 var(--contact-mint);
+}
+
+.bis-contact .custom-contact-header h1 {
+  max-width: 11ch;
+  margin: 0 0 1.8rem;
+  color: var(--contact-porcelain);
+  font-family: var(--font-heading-family);
+  font-size: clamp(4.5rem, 8vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.bis-contact .custom-contact-header p {
+  max-width: 65rem;
+  margin: 0;
+  color: rgba(244, 241, 235, 0.86);
+  font-size: clamp(1.5rem, 1.8vw, 1.9rem);
+}
+
+.bis-contact .custom-contact-layout {
+  grid-template-columns: minmax(0, 1.35fr) minmax(28rem, 0.65fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+}
+
+.bis-contact :is(.custom-contact-form-card, .custom-contact-info-card) {
+  border: 2px solid var(--contact-ink);
+  border-radius: 0.5rem;
+}
+
+.bis-contact .custom-contact-form-card {
+  padding: clamp(2.4rem, 4vw, 4.5rem);
+  background: var(--contact-paper);
+  box-shadow: 0.7rem 0.7rem 0 var(--contact-acid);
+}
+
+.bis-contact .custom-contact-info-card {
+  padding: clamp(2.4rem, 4vw, 4rem);
+  border-left: 0.7rem solid var(--contact-pink);
+  background: var(--contact-green);
+  color: var(--contact-porcelain);
+  box-shadow: 0.7rem 0.7rem 0 var(--contact-mint);
+}
+
+.bis-contact .custom-contact-field label {
+  color: var(--contact-ink);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bis-contact .custom-contact-field input,
+.bis-contact .custom-contact-field textarea {
+  border: 2px solid var(--contact-ink);
+  border-radius: 0.25rem;
+  background: var(--contact-porcelain);
+  color: var(--contact-ink);
+  box-shadow: inset 0.3rem 0.3rem 0 rgba(21, 23, 28, 0.05);
+}
+
+.bis-contact .custom-contact-field input:focus,
+.bis-contact .custom-contact-field textarea:focus {
+  outline: 0.3rem solid var(--contact-green);
+  outline-offset: 0.2rem;
+  border-color: var(--contact-ink);
+  box-shadow: 0 0 0 0.5rem var(--contact-mint);
+}
+
+.bis-contact .custom-contact-button button {
+  min-height: 5.6rem;
+  border: 2px solid var(--contact-ink);
+  border-radius: 0.3rem;
+  background: var(--contact-pink);
+  color: var(--contact-ink);
+  box-shadow: 0.45rem 0.45rem 0 var(--contact-ink);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bis-contact .custom-contact-button button:hover {
+  background: var(--contact-mint);
+  color: var(--contact-ink);
+  box-shadow: 0.2rem 0.2rem 0 var(--contact-ink);
+  transform: translate(0.2rem, 0.2rem);
+}
+
+.bis-contact .custom-contact-info h2 {
+  color: var(--contact-acid);
+  font-family: var(--font-heading-family);
+  font-size: clamp(3rem, 4vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.bis-contact .custom-contact-info-item { border-bottom-color: rgba(244, 241, 235, 0.24); }
+.bis-contact .custom-contact-info-label { color: var(--contact-mint); }
+.bis-contact .custom-contact-info-item :is(a, p) { color: var(--contact-porcelain); }
+.bis-contact .custom-contact-info-item a:hover { color: var(--contact-acid); }
+
+.bis-contact :is(.custom-contact-quick h3, .custom-contact-social h3) { color: var(--contact-acid); }
+.bis-contact .custom-contact-quick a { border-bottom-color: rgba(244, 241, 235, 0.2); color: var(--contact-porcelain); }
+.bis-contact .custom-contact-quick a:hover { color: var(--contact-acid); }
+
+.bis-contact .custom-contact-social-icons a {
+  border: 2px solid var(--contact-ink);
+  border-radius: 0.25rem;
+  background: var(--contact-mint);
+  color: var(--contact-ink);
+  box-shadow: 0.25rem 0.25rem 0 var(--contact-acid);
+}
+
+.bis-contact .custom-contact-social-icons a:hover { background: var(--contact-pink); color: var(--contact-ink); }
+
+.bis-contact .custom-contact-success {
+  border: 2px solid var(--contact-green);
+  border-radius: 0.3rem;
+  background: rgba(69, 192, 182, 0.18);
+  color: var(--contact-green);
+}
+
+.bis-contact .custom-contact-error {
+  border: 2px solid #991b1b;
+  border-radius: 0.3rem;
+  background: #fff1f2;
+  color: #7f1d1d;
+}
+
+.bis-contact :is(a, button):focus-visible {
+  outline: 0.3rem solid var(--contact-acid);
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.55rem var(--contact-pink);
+}
+
+@media screen and (max-width: 900px) {
+  .bis-contact .custom-contact-layout { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 749px) {
+  .bis-contact #MainContent { background-size: 4rem 4rem; }
+  .bis-contact .custom-contact-container { padding-right: 1.6rem; padding-left: 1.6rem; }
+  .bis-contact .custom-contact-header { padding: 3.2rem 2.2rem; }
+  .bis-contact .custom-contact-header h1 { font-size: clamp(4rem, 15vw, 6rem); }
+  .bis-contact :is(.custom-contact-form-card, .custom-contact-info-card) { padding: 2.4rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bis-contact .custom-contact-button button,
+  .bis-contact .custom-contact-social-icons a { transition: none; }
+
+  .bis-contact .custom-contact-button button:hover,
+  .bis-contact .custom-contact-social-icons a:hover { transform: none; }
+}

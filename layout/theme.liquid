@@ -224,6 +224,12 @@
     {{ 'footer-experience.css' | asset_url | stylesheet_tag }}
     {%- if request.page_type == 'index' -%}
       {{ 'home-experience.css' | asset_url | stylesheet_tag }}
+    {%- elsif request.page_type == 'collection' -%}
+      {{ 'collection-experience.css' | asset_url | stylesheet_tag }}
+    {%- elsif request.page_type == 'page' and template.suffix == 'contact' -%}
+      {{ 'contact-experience.css' | asset_url | stylesheet_tag }}
+    {%- elsif request.page_type == 'page' and template.suffix == 'about-us' -%}
+      {{ 'about-experience.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
@@ -250,7 +256,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if request.page_type == 'index' %} bis-home{% endif %}{% if request.page_type == 'cart' %} template-cart{% if cart == empty %} template-cart-empty{% endif %}{% endif %}">
+  <body class="gradient{% if request.page_type == 'index' %} bis-home{% elsif request.page_type == 'collection' %} bis-collection{% elsif request.page_type == 'page' and template.suffix == 'contact' %} bis-contact{% elsif request.page_type == 'page' and template.suffix == 'about-us' %} bis-about{% endif %}{% if request.page_type == 'cart' %} template-cart{% if cart == empty %} template-cart-empty{% endif %}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
